@@ -1,0 +1,23 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Image</th>
+      <th scope="col">SKU</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col">Unit price</th>
+      <th scope="col">Units in stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td><img src="{{product.imageUrl}}" height="50" alt=""></td>
+      <td>{{product.sku}}</td>
+      <td>{{product.name}}</td>
+      <td>{{product.description}}</td>
+      <td>{{product.unitPrice | currency: "USD"}}</td>
+      <td>{{product.unitsInStock}}</td>
+    </tr>
+  </tbody>
+</table>
+
