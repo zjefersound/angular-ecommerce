@@ -13,7 +13,7 @@
             <h4 class="mx-3" title="{{ tempProduct.description }}">
               {{
                 tempProduct.description.length > 6
-                  ? (tempProduct.description | slice: 0:100) + "..."
+                  ? (tempProduct.description | slice: 0:72) + "..."
                   : tempProduct.description
               }}
             </h4>

@@ -11,12 +11,13 @@
 .page-wrapper {
   overflow: hidden;
   background: $gray-100;
-  padding-bottom: 8vh;
 }
 
 .page-container {
   background: $gray-50;
   padding-left: 200px;
+  padding-bottom: 8vh;
+
 }
 
 .main-content {
@@ -122,6 +123,7 @@ section {
 .au-input {
   line-height: 43px;
   border: 1px solid $gray-100;
+  border-right: 0;
   font-size: 14px;
   color: $gray-600;
   padding: 0 17px;
@@ -184,18 +186,19 @@ section {
 .au-btn-submit {
   position: relative;
   right: 0;
-  min-width: 95px;
-  color: $white;
-  border: 1px solid $primary;
+  min-width: 3rem;
+  color: $primary;
   border-top-right-radius: $b-radius;
   -webkit-border-top-right-radius: $b-radius;
   border-bottom-right-radius: $b-radius;
   -webkit-border-bottom-right-radius: $b-radius;
-  background: $primary;
+  background: $white;
+  border: 1px solid $gray-100;
+  border-left: 0;
 }
 
 .au-btn-submit:hover {
-  background: $primary-dark;
+  color: $primary-dark;
 }
 
 .au-btn-submit > i {
@@ -451,6 +454,7 @@ section {
   padding-bottom: 1rem;
   background: $white;
   border-radius: $b-radius;
+  box-shadow: 0 4px 8px rgba($black, 0.08);
 
   .product-image {
     border-bottom: 1px solid $gray-100;
@@ -485,9 +489,9 @@ section {
   justify-content: space-between;
 
   .value {
-    color: $gray-700;
+    color: $gray-800;
     font-weight: 800;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 }
 
@@ -698,9 +702,11 @@ footer ul li a {
 }
 footer {
   background: $gray-900;
-  z-index: 1;
   position: relative;
   text-align: center;
+  ul {
+    margin-bottom: 0;
+  }
 }
 footer li a {
   color: $gray-800;
