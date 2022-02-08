@@ -6,6 +6,19 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 
+import {
+  RiAncientGateFill,
+  RiHome2Fill,
+  RemixIconModule,
+  RiShoppingCartLine
+} from 'angular-remix-icon';
+
+// Configure the required icons before hand
+const icons = {
+  RiAncientGateFill,
+  RiHome2Fill,
+  RiShoppingCartLine
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -13,7 +26,8 @@ import { ProductService } from './services/product.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RemixIconModule.configure(icons),
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]

@@ -1,23 +1,61 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Image</th>
-      <th scope="col">SKU</th>
-      <th scope="col">Name</th>
-      <th scope="col">Description</th>
-      <th scope="col">Unit price</th>
-      <th scope="col">Units in stock</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let product of products">
-      <td><img src="{{product.imageUrl}}" height="50" alt=""></td>
-      <td>{{product.sku}}</td>
-      <td>{{product.name}}</td>
-      <td>{{product.description}}</td>
-      <td>{{product.unitPrice | currency: "USD"}}</td>
-      <td>{{product.unitsInStock}}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let tempProduct of products" class="col-md-3">
+          <div class="product-box">
+            <a href="product-detail.html" class="product-image">
+              <img src="{{ tempProduct.imageUrl }}" class="img-responsive" />
+            </a>
+            <a href="product-detail.html">
+              <h3 class="mx-3">{{ tempProduct.name }}</h3>
+            </a>
+            <h4 class="mx-3" title="{{ tempProduct.description }}">
+              {{
+                tempProduct.description.length > 6
+                  ? (tempProduct.description | slice: 0:100) + "..."
+                  : tempProduct.description
+              }}
+            </h4>
+            <div class="price px-3">
+              <span class="value">
+                {{ tempProduct.unitPrice | currency: "USD" }}
+              </span>
+              <a href="#" class="primary-btn">Add to cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
+      <div class="footer-pagination">
+        <div class="row">
+          <div class="col-md-6"></div>
+          <div class="col-md-3">
+            <div class="items">
+              <label>Item per page</label>
+              <select>
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="number">1 - 10 of 100</div>
+          </div>
+          <div class="col-md-1">
+            <div class="arrows">
+              <a href="#"
+                ><i class="fa fa-angle-left" aria-hidden="true"></i
+              ></a>
+              <a href="#"
+                ><i class="fa fa-angle-right" aria-hidden="true"></i
+              ></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
