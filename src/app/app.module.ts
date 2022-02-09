@@ -7,29 +7,35 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductService } from './services/product.service';
 
 import {
-  RiAncientGateFill,
   RiHome2Fill,
   RemixIconModule,
-  RiShoppingCartLine
+  RiShoppingCartLine,
 } from 'angular-remix-icon';
+import { Routes, RouterModule } from '@angular/router';
 
 // Configure the required icons before hand
 const icons = {
-  RiAncientGateFill,
   RiHome2Fill,
-  RiShoppingCartLine
+  RiShoppingCartLine,
 };
+
+const routes: Routes = [
+  { path: 'category/:id', component: ProductListComponent },
+  { path: 'category', component: ProductListComponent },
+  { path: 'products', component: ProductListComponent },
+  { path: '', redirectTo: "/products", pathMatch: 'full' },
+  { path: '**', redirectTo: "/products", pathMatch: 'full' },
+];
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    ProductListComponent
-  ],
+  declarations: [AppComponent, ProductListComponent],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
     RemixIconModule.configure(icons),
   ],
   providers: [ProductService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
