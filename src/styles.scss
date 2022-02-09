@@ -459,6 +459,7 @@ section {
   .product-image {
     border-bottom: 1px solid $gray-100;
     width: 100%;
+    min-height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -674,14 +675,16 @@ table.table.table-bordered th {
 }
 a.primary-btn {
   background: $primary;
-  padding: 7px 20px;
+  padding: 8px 20px;
   text-align: center;
   display: inline-block;
   color: $white;
   border-radius: $b-radius;
   font-size: 14px;
+  line-height: 16px;
   margin-top: 5px;
 }
+
 a.primary-btn:hover {
   background: $primary-light;
   color: $white;
@@ -689,6 +692,7 @@ a.primary-btn:hover {
 
 .active-link {
   font-weight: bold;
+  color: $primary !important;
 }
 
 /*
