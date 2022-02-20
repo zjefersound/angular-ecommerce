@@ -16,12 +16,18 @@ export class ProductService {
   getProductList({ categoryId }: GetParamsProduct = {}): Observable<Product[]> {
     const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${categoryId}`;
     const url = categoryId ? searchUrl : this.baseUrl;
-    return this.getProducts(url)
+    return this.getProducts(url);
   }
 
   searchProducts(name: string) {
     const url = `${this.baseUrl}/search/findByNameContaining?name=${name}`;
     return this.getProducts(url);
+  }
+
+  getProduct(id: number): Observable<Product> {
+    const url = `${this.baseUrl}/${id}`;
+
+    return this.httpClient.get<Product>(url);
   }
 
   getProducts(url: string) {
