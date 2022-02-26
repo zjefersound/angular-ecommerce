@@ -19,6 +19,14 @@ export class ProductService {
     return this.getProducts(url);
   }
 
+  getProductListPaginate({ categoryId, page, pageSize }: GetParamsProduct = {}): Observable<GetResponseProduct> {
+    const paginationParams = `page=${page}&size=${pageSize}`;
+    const path = categoryId ? '/search/findByCategoryId' : '';
+    const params = `?${categoryId ? `id=${categoryId}&` : ''}${paginationParams}`;
+    const url = this.baseUrl+path+params;
+    return this.httpClient.get<GetResponseProduct>(url);
+  }
+
   searchProducts(name: string) {
     const url = `${this.baseUrl}/search/findByNameContaining?name=${name}`;
     return this.getProducts(url);
@@ -46,12 +54,20 @@ export class ProductService {
 
 interface GetParamsProduct {
   categoryId?: number;
+  page?: number;
+  pageSize?: number;
 }
 
 interface GetResponseProduct {
   _embedded: {
     products: Product[];
-  };
+  },
+  page: {
+    size: number;
+    totalElements: number;
+    totalPages: number;
+    number: number;
+  }
 }
 
 interface GetResponseProductCategory {
