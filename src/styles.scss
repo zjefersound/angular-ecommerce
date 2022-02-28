@@ -671,7 +671,8 @@ table.table.table-bordered th {
   background-color: $primary-light !important;
   border-color: $primary-light !important;
 }
-a.primary-btn {
+
+.primary-btn {
   background: $primary;
   padding: 8px 20px;
   text-align: center;
@@ -679,11 +680,12 @@ a.primary-btn {
   color: $white;
   border-radius: $b-radius;
   font-size: 14px;
+  font-weight: bold;
   line-height: 16px;
   margin-top: 5px;
 }
 
-a.primary-btn:hover {
+.primary-btn:hover {
   background: $primary-light;
   color: $white;
 }

@@ -21,7 +21,7 @@
               <span class="value">
                 {{ tempProduct.unitPrice | currency: "USD" }}
               </span>
-              <a href="#" class="ms-2 primary-btn">Add to cart</a>
+              <button (click)="addToCart(tempProduct)" class="ms-2 primary-btn">Add to cart</button>
             </div>
           </div>
         </div>
