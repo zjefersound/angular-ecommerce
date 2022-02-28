@@ -44,9 +44,26 @@
                   [(page)]="pageNumber"
                   [pageSize]="pageSize"
                   [collectionSize]="totalElements"
+                  [maxSize]="5"
                   (pageChange)="listProducts()"
                 >
                 </ngb-pagination>
+              </div>
+              <div class="col-md-3">
+                <div class="d-flex">
+                  <span class="mr-2">Size:</span>
+                  <select
+                    #pageSizeInput
+                    (change)="updatePageSize(pageSizeInput.value)"
+                    class="form-select"
+                  >
+                    <option>2</option>
+                    <option selected="true">5</option>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                  </select>
+                </div>
               </div>
             </div>
           </div>

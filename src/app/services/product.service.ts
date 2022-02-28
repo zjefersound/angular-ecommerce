@@ -19,17 +19,36 @@ export class ProductService {
     return this.getProducts(url);
   }
 
-  getProductListPaginate({ categoryId, page, pageSize }: GetParamsProduct = {}): Observable<GetResponseProduct> {
+  getProductListPaginate({
+    categoryId,
+    page,
+    pageSize,
+  }: GetParamsProduct = {}): Observable<GetResponseProduct> {
     const paginationParams = `page=${page}&size=${pageSize}`;
     const path = categoryId ? '/search/findByCategoryId' : '';
-    const params = `?${categoryId ? `id=${categoryId}&` : ''}${paginationParams}`;
-    const url = this.baseUrl+path+params;
+    const params = `?${
+      categoryId ? `id=${categoryId}&` : ''
+    }${paginationParams}`;
+    const url = this.baseUrl + path + params;
     return this.httpClient.get<GetResponseProduct>(url);
   }
 
-  searchProducts(name: string) {
-    const url = `${this.baseUrl}/search/findByNameContaining?name=${name}`;
+  searchProducts(name: string, { page, pageSize } = {} as any) {
+    const paginationParams = `page=${page}&size=${pageSize}`;
+    const url = `${this.baseUrl}/search/findByNameContaining?name=${name}&${paginationParams}`;
     return this.getProducts(url);
+  }
+
+  searchProductsPaginate({
+    name,
+    page,
+    pageSize,
+  }: GetParamsProduct = {}): Observable<GetResponseProduct> {
+    const paginationParams = `page=${page}&size=${pageSize}`;
+    const path = '/search/findByNameContaining';
+    const params = `?name=${name}&${paginationParams}`;
+    const url = this.baseUrl + path + params;
+    return this.httpClient.get<GetResponseProduct>(url);
   }
 
   getProduct(id: number): Observable<Product> {
@@ -56,18 +75,19 @@ interface GetParamsProduct {
   categoryId?: number;
   page?: number;
   pageSize?: number;
+  name?: string;
 }
 
-interface GetResponseProduct {
+export interface GetResponseProduct {
   _embedded: {
     products: Product[];
-  },
+  };
   page: {
     size: number;
     totalElements: number;
     totalPages: number;
     number: number;
-  }
+  };
 }
 
 interface GetResponseProductCategory {
