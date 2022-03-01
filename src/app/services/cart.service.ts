@@ -15,17 +15,10 @@ export class CartService {
 
   addToCart(cartItem: CartItem) {
     // check if we have the item in the cart
-    let existingCartItem: CartItem | undefined = undefined;
-
     // find the item in the cart
-    if (this.cartItems.length > 0) {
-      for (const tempCartItem of this.cartItems) {
-        if (tempCartItem.id === cartItem.id) {
-          existingCartItem = tempCartItem;
-          break;
-        }
-      }
-    }
+    const existingCartItem: CartItem | undefined = this.cartItems.find(
+      (tempCartItem) => tempCartItem.id === cartItem.id
+    );
 
     console.log('existingCartItem', existingCartItem);
 
@@ -56,16 +49,16 @@ export class CartService {
   }
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
-
     console.log('Cart Items');
     console.log('---------------------');
     for (const tempCartItem of this.cartItems) {
-      const tempTotalPriceValue = tempCartItem.unitPrice * tempCartItem.quantity;
-      console.log(`\nname=${tempCartItem.name} quantity=${tempCartItem.quantity} unitPrice=${tempCartItem.unitPrice} subTotal=${tempTotalPriceValue}`);
+      const tempTotalPriceValue =
+        tempCartItem.unitPrice * tempCartItem.quantity;
+      console.log(
+        `\nname=${tempCartItem.name} quantity=${tempCartItem.quantity} unitPrice=${tempCartItem.unitPrice} subTotal=${tempTotalPriceValue}`
+      );
     }
     console.log('---------------------');
     console.log(`quantity=${totalQuantityValue} total=${totalPriceValue}`);
-
-
   }
 }

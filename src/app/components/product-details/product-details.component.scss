@@ -1,5 +1,15 @@
+@import "src/variables.scss";
+
 .detail-section {
-  margin-top: 60px;
+  margin-top: 80px;
+  padding: $p-8;
+
+  .detail-content {
+    box-shadow: $box-shadow;
+    background: $white;
+    padding: $p-6;
+    border-radius: $b-radius;
+  }
 }
 
 .detail-img {

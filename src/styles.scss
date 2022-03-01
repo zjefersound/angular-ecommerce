@@ -94,12 +94,12 @@ aside.menu-sidebar.d-none.d-lg-block.clr {
 }
 
 .number {
-  padding: 6px 0;
+  padding: $p-2 $p-0;
 }
 
 .arrows i {
   font-size: 30px;
-  padding: 4px 4px;
+  padding: $p-1;
 }
 
 section {
@@ -113,7 +113,7 @@ section {
 }
 
 .section-content-p30 {
-  padding: 0 28px;
+  padding: $p-0 $p-7;
 }
 
 .au-input-xl {
@@ -126,7 +126,7 @@ section {
   border-right: 0;
   font-size: 14px;
   color: $gray-600;
-  padding: 0 17px;
+  padding: $p-0 $p-4;
   -webkit-border-radius: $b-radius;
   -moz-border-radius: $b-radius;
   border-radius: $b-radius;
@@ -162,13 +162,13 @@ section {
   border-radius: $b-radius;
   border: 1px solid $gray-200;
   float: left;
-  padding-left: 16px;
+  padding-left: $p-4;
   overflow: hidden;
 
   span {
     display: inline-block;
     background: $gray-100;
-    padding: 0 13px;
+    padding: $p-0 $p-3;
     color: $primary;
     font-weight: 700;
     margin-left: 11px;
@@ -233,7 +233,7 @@ section {
     background: $white;
     border-bottom: 1px solid $gray-100;
     height: $header-height;
-    padding: 0 35px;
+    padding: $p-0 $p-9;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -454,7 +454,7 @@ section {
   padding-bottom: 1rem;
   background: $white;
   border-radius: $b-radius;
-  box-shadow: 0 4px 8px rgba($black, 0.08);
+  box-shadow: $box-shadow;
 
   .product-image {
     border-bottom: 1px solid $gray-100;
