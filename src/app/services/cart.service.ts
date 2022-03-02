@@ -54,7 +54,7 @@ export class CartService {
 
     opreation === 'increment'
       ? existingCartItem.quantity++
-      : existingCartItem.quantity--;
+      : existingCartItem.quantity > 0 && existingCartItem.quantity--;
 
     // compute total price and total quantity
     this.computeCartTotals();
