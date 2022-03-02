@@ -98,8 +98,12 @@
         <!-- Copy Shipping address to Billing address -->
         <div class="input-space">
           <label class="au-checkbox">
-            <input type="checkbox" (change)="copyShippingAddressToBillingAddress($event)">
-            <span class="au-checkmark"></span>Billing Address same as Shipping Address
+            <input
+              type="checkbox"
+              (change)="copyShippingAddressToBillingAddress($event)"
+            />
+            <span class="au-checkmark"></span>Billing Address same as Shipping
+            Address
           </label>
         </div>
         <!-- Billing Address form -->
@@ -160,6 +164,77 @@
               </div>
             </div>
           </div>
+        </div>
+        <!-- Credit Card form -->
+        <div formGroupName="creditCard" class="form-area">
+          <h3>Credit Card</h3>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="cardType">Card Type</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <select formControlName="cardType">
+                  <option>Visa</option>
+                  <option>Mastercard</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="nameOnCard">Name On Card</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="nameOnCard" type="text" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-2">
+              <label for="cardNumber">Card Number</label>
+            </div>
+            <div class="col-md-9">
+              <div class="input-space">
+                <input formControlName="cardNumber" type="text" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4">
+              <label for="securityCode">Security Code</label>
+              <div class="col-md-9">
+                <div class="input-space">
+                  <input formControlName="securityCode" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="expirationMonth">Expiration Month</label>
+              <div class="col-md-9">
+                <div class="input-space">
+                  <input formControlName="expirationMonth" type="text" />
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <label for="expirationYear">Expiration Year</label>
+              <div class="col-md-9">
+                <div class="input-space">
+                  <input formControlName="expirationYear" type="text" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-area">
+          <h3>Review your order</h3>
+          <p>Total Quantity: {{totalQuantity}}</p>
+          <p>Shipping: FREE</p>
+          <p>Total Price: {{totalPrice | currency: 'USD'}}</p>
         </div>
         <!-- Submit button -->
         <div class="text-center">
