@@ -426,7 +426,7 @@ section {
   background: $white;
 }
 .main-content.page-m {
-  padding: 10% 15% !important;
+  padding: 10% 30% 10% 5%;
 }
 
 /*
@@ -503,17 +503,18 @@ section {
 */
 
 .form-area {
-  background: $gray-100;
+  background: $gray-50;
   position: relative;
   margin-bottom: 45px;
-  padding: 50px 20px;
-  border: 3px solid $gray-300;
+  padding: $p-8 $p-5;
+  border: 1px solid $gray-200;
+  border-radius: $b-radius;
 }
 .form-area h3 {
   position: absolute;
   top: -26px;
   left: 13px;
-  background: $gray-100;
+  background: $gray-50;
   padding: 10px 20px;
   font-weight: 500;
   z-index: 23;
@@ -723,6 +724,10 @@ footer ul li {
   display: inline-block;
   font-size: 14px;
   padding: 10px 20px;
+}
+
+.shadow {
+  box-shadow: $box-shadow;
 }
 
 /*

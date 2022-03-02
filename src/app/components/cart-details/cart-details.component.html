@@ -63,10 +63,15 @@
               <p class="cart-item-quantity">Quantity: {{ totalQuantity }}</p>
             </td>
             <td>
-              <span>Shipping: FREE</span>
-              <p class="cart-item-price">
-                Total: {{ totalPrice | currency: "USD" }}
-              </p>
+              <div>
+                <span>Shipping: FREE</span>
+                <p class="cart-item-price">
+                  Total: {{ totalPrice | currency: "USD" }}
+                </p>
+                <a routerLink="/checkout" class="primary-btn">
+                  Checkout
+                </a>
+              </div>
             </td>
           </tr>
         </table>
