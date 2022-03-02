@@ -1,47 +1,83 @@
 <div class="main-content cart-details">
   <div class="section-content section-content-p-30">
     <div class="container-fluid">
-      <table class="table table-bordered">
-        <tr>
-          <th width="15%">Product Image</th>
-          <th width="45%">Product Details</th>
-          <th width="15%">Quantity</th>
-          <th width="25%"></th>
-        </tr>
-        <tr *ngFor="let cartItem of cartItems">
-          <td class="d-flex">
-            <img
-              src="{{ cartItem.imageUrl }}"
-              alt="{{ cartItem.name }}"
-              class="cart-item-image"
-            />
-          </td>
-          <td>
-            <p class="cart-item-name">{{ cartItem.name }}</p>
-            <p class="cart-item-price">
-              {{ cartItem.unitPrice | currency: "USD" }}
-            </p>
-          </td>
-          <td>
-            <p class="cart-item-quantity">Quantity: {{ cartItem.quantity }}</p>
-          </td>
-          <td>
-            <p class="cart-item-subtotal">
-              {{ cartItem.unitPrice * cartItem.quantity | currency: "USD" }}
-            </p>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="2"></td>
-          <td>
-            <p class="cart-item-quantity">Quantity: {{ totalQuantity }}</p>
-          </td>
-          <td>
-            <span>Shipping: FREE</span>
-            <p class="cart-item-price">Total: {{ totalPrice | currency: "USD" }}</p>
-          </td>
-        </tr>
-      </table>
+      <div *ngIf="cartItems.length > 0">
+        <table class="table table-bordered">
+          <tr>
+            <th width="15%">Product Image</th>
+            <th width="45%">Product Details</th>
+            <th width="15%">Quantity</th>
+            <th width="25%"></th>
+          </tr>
+          <tr *ngFor="let cartItem of cartItems">
+            <td class="d-flex">
+              <img
+                src="{{ cartItem.imageUrl }}"
+                alt="{{ cartItem.name }}"
+                class="cart-item-image"
+              />
+            </td>
+            <td>
+              <p class="cart-item-name">{{ cartItem.name }}</p>
+              <p class="cart-item-price">
+                {{ cartItem.unitPrice | currency: "USD" }}
+              </p>
+            </td>
+            <td>
+              <div>
+                <div class="input-group">
+                  <button
+                    class="btn btn-outline-secondary"
+                    (click)="decrementQuantity(cartItem)"
+                  >
+                    <rmx-icon name="subtract-line"></rmx-icon>
+                  </button>
+                  <div class="form-control text-center">
+                    {{ cartItem.quantity }}
+                  </div>
+                  <button
+                    class="btn btn-outline-secondary"
+                    (click)="incrementQuantity(cartItem)"
+                  >
+                    <rmx-icon name="add-line"></rmx-icon>
+                  </button>
+                </div>
+                <button
+                  (click)="removeFromCart(cartItem)"
+                  class="btn btn-outline-danger btn-sm d-flex align-items-center mt-2 remove-button"
+                >
+                  <rmx-icon name="delete-bin-line" class="me-2"></rmx-icon>
+                  Remove Item
+                </button>
+              </div>
+            </td>
+            <td>
+              <p class="cart-item-subtotal">
+                {{ cartItem.unitPrice * cartItem.quantity | currency: "USD" }}
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td>
+              <p class="cart-item-quantity">Quantity: {{ totalQuantity }}</p>
+            </td>
+            <td>
+              <span>Shipping: FREE</span>
+              <p class="cart-item-price">
+                Total: {{ totalPrice | currency: "USD" }}
+              </p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div
+        *ngIf="cartItems.length === 0"
+        class="alert alert-warning"
+        role="alert"
+      >
+        Empty
+      </div>
     </div>
   </div>
 </div>

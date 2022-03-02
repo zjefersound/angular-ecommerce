@@ -10,6 +10,9 @@ import {
   RiHome2Fill,
   RemixIconModule,
   RiShoppingCartLine,
+  RiAddLine,
+  RiSubtractLine,
+  RiDeleteBinLine,
 } from 'angular-remix-icon';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCategoryMenuComponent } from './components/product-category-menu/product-category-menu.component';
@@ -24,6 +27,9 @@ import { CartDetailsComponent } from './components/cart-details/cart-details.com
 const icons = {
   RiHome2Fill,
   RiShoppingCartLine,
+  RiAddLine,
+  RiSubtractLine,
+  RiDeleteBinLine,
 };
 
 const routes: Routes = [
@@ -33,12 +39,20 @@ const routes: Routes = [
   { path: 'category/:id', component: ProductListComponent },
   { path: 'category', component: ProductListComponent },
   { path: 'products', component: ProductListComponent },
-  { path: '', redirectTo: "/products", pathMatch: 'full' },
-  { path: '**', redirectTo: "/products", pathMatch: 'full' },
+  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '**', redirectTo: '/products', pathMatch: 'full' },
 ];
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent, ProductCategoryMenuComponent, SearchComponent, ProductDetailsComponent, CartStatusComponent, CartDetailsComponent],
+  declarations: [
+    AppComponent,
+    ProductListComponent,
+    ProductCategoryMenuComponent,
+    SearchComponent,
+    ProductDetailsComponent,
+    CartStatusComponent,
+    CartDetailsComponent,
+  ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,

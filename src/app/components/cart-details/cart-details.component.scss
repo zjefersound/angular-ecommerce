@@ -5,6 +5,16 @@
     max-height: 120px;
     margin: auto;
   }
+
+  .remove-button {
+    .rmx-icon {
+      height: 16px;
+      width: 16px;
+      line-height: 0;
+
+    }
+  }
+
   .cart-item-name {
     font-weight: 700;
   }
