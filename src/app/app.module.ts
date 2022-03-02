@@ -18,6 +18,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 
 // Configure the required icons before hand
 const icons = {
@@ -26,6 +27,7 @@ const icons = {
 };
 
 const routes: Routes = [
+  { path: 'cart-details', component: CartDetailsComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'category/:id', component: ProductListComponent },
@@ -36,7 +38,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ProductListComponent, ProductCategoryMenuComponent, SearchComponent, ProductDetailsComponent, CartStatusComponent],
+  declarations: [AppComponent, ProductListComponent, ProductCategoryMenuComponent, SearchComponent, ProductDetailsComponent, CartStatusComponent, CartDetailsComponent],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,

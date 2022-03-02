@@ -1,0 +1,19 @@
+@import 'src/variables.scss';
+
+.cart-details {
+  .cart-item-image {
+    max-height: 120px;
+    margin: auto;
+  }
+  .cart-item-name {
+    font-weight: 700;
+  }
+  .cart-item-price {
+    font-weight: 700;
+    color: $primary;
+  }
+  .cart-item-quantity {
+  }
+  .cart-item-subtotal {
+  }
+}

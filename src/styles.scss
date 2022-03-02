@@ -618,14 +618,17 @@ select {
 
 .table {
   margin: 0;
+  > :not(:first-child) {
+    border: 0;
+  }
 }
 table.table.table-bordered {
-  border: 1px solid $gray-300;
+  border: 1px solid $gray-100;
   background: $white;
 }
 .table-bordered td,
 .table-bordered th {
-  border: 1px solid $gray-200;
+  border: 1px solid $gray-100;
 }
 table.table.table-bordered th {
   background: $primary-light;
@@ -972,4 +975,9 @@ footer ul li {
     border: 0;
     padding: 8px 0;
   }
+}
+
+.main-content {
+  margin-top: 80px;
+  padding: $p-8;
 }
