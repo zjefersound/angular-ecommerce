@@ -54,7 +54,7 @@ export class CheckoutComponent implements OnInit {
     this.updateCartStatus();
 
     // Populate the credit card months and years
-    const startMonth = 1;
+    const startMonth = new Date().getMonth() + 1;
     this.luv2ShopFormService
       .getCreditCardMonths(startMonth)
       .subscribe((data) => (this.creditCardMonths = data));
@@ -87,5 +87,21 @@ export class CheckoutComponent implements OnInit {
     console.log('Data for submission:');
     console.log(this.checkoutFormGroup.get('customer')?.value);
     console.log(this.checkoutFormGroup.get('shippingAddress')?.value);
+  }
+
+  handleMonthsAndYears() {
+    const creditCardFormGroup = this.checkoutFormGroup.get('creditCard');
+
+    const currentYear: number = new Date().getFullYear();
+    const selectedYear: number = Number(
+      creditCardFormGroup?.value.expirationYear
+    );
+
+    const startMonth =
+      currentYear === selectedYear ? new Date().getMonth() + 1 : 1;
+
+    this.luv2ShopFormService
+      .getCreditCardMonths(startMonth)
+      .subscribe((data) => (this.creditCardMonths = data));
   }
 }
