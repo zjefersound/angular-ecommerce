@@ -16,14 +16,14 @@ export class Luv2ShopFormService {
   getCountries(): Observable<Country[]> {
     return this.httpClient
       .get<GetResponseCountries>(this.countriesUrl)
-      .pipe(map((response) => response._embeded.countries));
+      .pipe(map((response) => response._embedded.countries));
   }
 
   getStates(countryCode: string): Observable<State[]> {
     const searchStatesUrl = `${this.statesUrl}/search/findByCountryCode?code=${countryCode}`;
     return this.httpClient
       .get<GetResponseStates>(searchStatesUrl)
-      .pipe(map((response) => response._embeded.states));
+      .pipe(map((response) => response._embedded.states));
   }
 
   getCreditCardMonths(startMonth: number): Observable<number[]> {
@@ -49,12 +49,12 @@ export class Luv2ShopFormService {
 }
 
 interface GetResponseCountries {
-  _embeded: {
+  _embedded: {
     countries: Country[];
   };
 }
 interface GetResponseStates {
-  _embeded: {
+  _embedded: {
     states: State[];
   };
 }
