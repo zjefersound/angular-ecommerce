@@ -132,8 +132,7 @@
                 <div
                   *ngIf="
                     billingAddressState?.invalid &&
-                    (billingAddressState?.dirty ||
-                      billingAddressState?.touched)
+                    (billingAddressState?.dirty || billingAddressState?.touched)
                   "
                   class="text-danger"
                 >
@@ -230,7 +229,10 @@
                   >
                     Zip Code is required
                   </div>
-                  <div *ngIf="billingAddressZipCode?.errors?.['minlength']" class="">
+                  <div
+                    *ngIf="billingAddressZipCode?.errors?.['minlength']"
+                    class=""
+                  >
                     Zip Code must be at least 2 characters long
                   </div>
                 </div>
@@ -301,8 +303,7 @@
                 <div
                   *ngIf="
                     billingAddressState?.invalid &&
-                    (billingAddressState?.dirty ||
-                      billingAddressState?.touched)
+                    (billingAddressState?.dirty || billingAddressState?.touched)
                   "
                   class="text-danger"
                 >
@@ -399,7 +400,10 @@
                   >
                     Zip Code is required
                   </div>
-                  <div *ngIf="shippingAddressZipCode?.errors?.['minlength']" class="">
+                  <div
+                    *ngIf="shippingAddressZipCode?.errors?.['minlength']"
+                    class=""
+                  >
                     Zip Code must be at least 2 characters long
                   </div>
                 </div>
@@ -420,6 +424,20 @@
                   <option>Visa</option>
                   <option>Mastercard</option>
                 </select>
+                <div
+                  *ngIf="
+                    creditCardCardType?.invalid &&
+                    (creditCardCardType?.dirty || creditCardCardType?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="creditCardCardType?.errors?.['required'] || creditCardCardType?.errors?.['notOnlyWhitespace']"
+                    class=""
+                  >
+                    Card Type is required
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -430,6 +448,27 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="nameOnCard" type="text" />
+                <div
+                  *ngIf="
+                    creditCardNameOnCard?.invalid &&
+                    (creditCardNameOnCard?.dirty ||
+                      creditCardNameOnCard?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="creditCardNameOnCard?.errors?.['required'] || creditCardNameOnCard?.errors?.['notOnlyWhitespace']"
+                    class=""
+                  >
+                    Name is required
+                  </div>
+                  <div
+                    *ngIf="creditCardNameOnCard?.errors?.['minlength']"
+                    class=""
+                  >
+                    Name must be at least 2 characters long
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -440,6 +479,24 @@
             <div class="col-md-9">
               <div class="input-space">
                 <input formControlName="cardNumber" type="text" />
+                <div
+                  *ngIf="
+                    creditCardCardNumber?.invalid &&
+                    (creditCardCardNumber?.dirty ||
+                      creditCardCardNumber?.touched)
+                  "
+                  class="text-danger"
+                >
+                  <div
+                    *ngIf="creditCardCardNumber?.errors?.['required'] || creditCardCardNumber?.errors?.['notOnlyWhitespace']"
+                    class=""
+                  >
+                    Card Number is required
+                  </div>
+                  <div *ngIf="email?.errors?.['pattern']" class="">
+                    Card number must be 16 digits long
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -450,6 +507,24 @@
               <div class="col-md-9">
                 <div class="input-space">
                   <input formControlName="securityCode" type="text" />
+                  <div
+                    *ngIf="
+                      creditCardSecurityCode?.invalid &&
+                      (creditCardSecurityCode?.dirty ||
+                        creditCardSecurityCode?.touched)
+                    "
+                    class="text-danger"
+                  >
+                    <div
+                      *ngIf="creditCardSecurityCode?.errors?.['required'] || creditCardSecurityCode?.errors?.['notOnlyWhitespace']"
+                      class=""
+                    >
+                      Security code is required
+                    </div>
+                    <div *ngIf="email?.errors?.['pattern']" class="">
+                      Security code must be 3 digits long
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

@@ -89,12 +89,22 @@ export class CheckoutComponent implements OnInit {
         ]),
       }),
       creditCard: this.formBuilder.group({
-        cardType: [''],
-        nameOnCard: [''],
-        cardNumber: [''],
-        securityCode: [''],
-        expirationMonth: [''],
-        expirationYear: [''],
+        cardType: new FormControl('', [Validators.required]),
+        nameOnCard: new FormControl('', [
+          Validators.required,
+          Validators.minLength(2),
+          Luv2ShopValidators.notOnlyWhitespace,
+        ]),
+        cardNumber: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]{16}'),
+        ]),
+        securityCode: new FormControl('', [
+          Validators.required,
+          Validators.pattern('[0-9]{3}'),
+        ]),
+        expirationMonth: new FormControl('', [Validators.required]),
+        expirationYear: new FormControl('', [Validators.required]),
       }),
     });
     this.updateCartStatus();
@@ -114,6 +124,7 @@ export class CheckoutComponent implements OnInit {
       .subscribe((data) => (this.countries = data));
   }
 
+  // Customer
   get firstName() {
     return this.checkoutFormGroup.get('customer.firstName');
   }
@@ -123,6 +134,8 @@ export class CheckoutComponent implements OnInit {
   get email() {
     return this.checkoutFormGroup.get('customer.email');
   }
+
+  // Shipping Address
   get shippingAddressStreet() {
     return this.checkoutFormGroup.get('shippingAddress.street');
   }
@@ -138,6 +151,8 @@ export class CheckoutComponent implements OnInit {
   get shippingAddressZipCode() {
     return this.checkoutFormGroup.get('shippingAddress.zipCode');
   }
+
+  // Billing Address
   get billingAddressStreet() {
     return this.checkoutFormGroup.get('billingAddress.street');
   }
@@ -152,6 +167,26 @@ export class CheckoutComponent implements OnInit {
   }
   get billingAddressZipCode() {
     return this.checkoutFormGroup.get('billingAddress.zipCode');
+  }
+
+  // Credit Card
+  get creditCardCardType() {
+    return this.checkoutFormGroup.get('creditCard.cardType');
+  }
+  get creditCardNameOnCard() {
+    return this.checkoutFormGroup.get('creditCard.nameOnCard');
+  }
+  get creditCardCardNumber() {
+    return this.checkoutFormGroup.get('creditCard.cardNumber');
+  }
+  get creditCardSecurityCode() {
+    return this.checkoutFormGroup.get('creditCard.securityCode');
+  }
+  get creditCardExpirationMonth() {
+    return this.checkoutFormGroup.get('creditCard.expirationMonth');
+  }
+  get creditCardExpirationYear() {
+    return this.checkoutFormGroup.get('creditCard.expirationYear');
   }
 
   copyShippingAddressToBillingAddress(event: any) {
