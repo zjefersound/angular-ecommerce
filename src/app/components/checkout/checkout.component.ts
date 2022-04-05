@@ -33,6 +33,7 @@ export class CheckoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.reviewCartDetails();
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: new FormControl('', [
@@ -107,7 +108,6 @@ export class CheckoutComponent implements OnInit {
         expirationYear: new FormControl('', [Validators.required]),
       }),
     });
-    this.updateCartStatus();
 
     // Populate the credit card months and years
     const startMonth = new Date().getMonth() + 1;
@@ -201,12 +201,11 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  updateCartStatus() {
+  reviewCartDetails() {
     this.cartService.totalPrice.subscribe((data) => (this.totalPrice = data));
     this.cartService.totalQuantity.subscribe(
       (data) => (this.totalQuantity = data)
     );
-    this.cartService.computeCartTotals();
   }
 
   onSubmit() {
