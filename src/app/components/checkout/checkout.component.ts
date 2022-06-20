@@ -5,9 +5,14 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Country } from 'src/app/common/country';
+import { Order } from 'src/app/common/order';
+import { OrderItem } from 'src/app/common/order-item';
+import { Purchase } from 'src/app/common/purchase';
 import { State } from 'src/app/common/state';
 import { CartService } from 'src/app/services/cart.service';
+import { CheckoutService } from 'src/app/services/checkout.service';
 import { Luv2ShopFormService } from 'src/app/services/luv2-shop-form.service';
 import { Luv2ShopValidators } from 'src/app/validators/luv2-shop-validators';
 
@@ -29,7 +34,9 @@ export class CheckoutComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private cartService: CartService,
-    private luv2ShopFormService: Luv2ShopFormService
+    private luv2ShopFormService: Luv2ShopFormService,
+    private checkoutService: CheckoutService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -234,6 +241,80 @@ export class CheckoutComponent implements OnInit {
       'Billing Address State: ',
       this.checkoutFormGroup.get('billingAddress')?.value.state.name
     );
+
+    // set order
+    let order = new Order();
+    order.totalPrice = this.totalPrice;
+    order.totalQuantity = this.totalQuantity;
+
+    // get cart items
+    const cartItems = this.cartService.cartItems;
+
+    // create orderItems
+    const orderItems = cartItems.map((cartItem) => new OrderItem(cartItem));
+
+    // set up purchase
+    let purchase = new Purchase();
+
+    // --- Populate purchase ---
+    // customer
+    purchase.customer = this.checkoutFormGroup.controls['customer'].value;
+
+    // shipping address
+    purchase.shippingAddress =
+      this.checkoutFormGroup.controls['shippingAddress'].value;
+    const shippingState: State = JSON.parse(
+      JSON.stringify(purchase.shippingAddress.state)
+    );
+    const shippingCountry: Country = JSON.parse(
+      JSON.stringify(purchase.shippingAddress.country)
+    );
+    purchase.shippingAddress.state = shippingState.name;
+    purchase.shippingAddress.country = shippingCountry.name;
+
+    // billing address
+    purchase.billingAddress =
+      this.checkoutFormGroup.controls['billingAddress'].value;
+    const billingState: State = JSON.parse(
+      JSON.stringify(purchase.billingAddress.state)
+    );
+    const billingCountry: Country = JSON.parse(
+      JSON.stringify(purchase.billingAddress.country)
+    );
+    purchase.billingAddress.state = billingState.name;
+    purchase.billingAddress.country = billingCountry.name;
+
+    // Order Items
+    purchase.order = order;
+    purchase.orderItems = orderItems;
+
+    // Call API
+    this.checkoutService.placeOrder(purchase).subscribe({
+      next: (response) => {
+        alert(
+          'Success! Your order has been recieved\n Order Tracking Number: ' +
+            response.orderTrackingNumber
+        );
+        // reset cart
+        this.resetCart();
+      },
+      error: (err) => {
+        alert('Error! There was an error: ' + err.message);
+      },
+    });
+  }
+
+  resetCart() {
+    // reset cart data
+    this.cartService.cartItems = [];
+    this.cartService.totalPrice.next(0);
+    this.cartService.totalQuantity.next(0);
+
+    // reset form
+    this.checkoutFormGroup.reset();
+
+    // send to main page
+    this.router.navigateByUrl('/products');
   }
 
   handleMonthsAndYears() {
